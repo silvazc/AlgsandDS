@@ -50,7 +50,28 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        return false;
+        return addToEnd(e);
+    }
+
+    // Appends the specified element to the
+    // end of the list
+    private boolean addToEnd(E e) {
+        // Empty list, only need to change
+        // the value of the head node
+        if (size == 0) {
+            head.data = e;
+            size++;
+            return true;
+        }
+
+        MyListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = new MyListNode(null, current, e);
+
+        size++;
+        return true;
     }
 
     @Override
